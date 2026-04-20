@@ -1,0 +1,24 @@
+/* Fix 1: goto popup slide picker — number column was vertical-middle.
+   Source: @slidev/client/internals/Goto.vue (class "autocomplete-list") */
+.autocomplete-list li > * {
+  vertical-align: top !important;
+}
+.autocomplete-list li > div:first-child {
+  padding-top: 0.75rem !important;
+  min-width: 2.5rem;
+}
+
+/* Fix 2: overview mode (press O) — slide number label "1" sits at top-0
+   with opacity-50, often clipped by the thumbnail's rounded top border.
+   Source: @slidev/client/internals/QuickOverview.vue */
+.slidev-overview .absolute.top-0,
+[class*="grid"] > .relative > .absolute.top-0 {
+  top: -2px !important;
+  opacity: 0.85 !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
+  line-height: 1;
+}

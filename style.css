@@ -1,4 +1,13 @@
-/* Fix 1: goto popup slide picker — number column was vertical-middle.
+/* Fix 1: hide goto dialog fully when closed.
+   Slidev uses class "-top-20" (top: -5rem) to hide it — but the list inside
+   is ~935px tall, so most of it stays on-screen and looks like a TOC panel.
+   Force visibility:hidden unless the dialog is open (class "top-5"). */
+#slidev-goto-dialog.-top-20 {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Fix 2: goto popup slide picker — number column was vertical-middle.
    Source: @slidev/client/internals/Goto.vue (class "autocomplete-list") */
 .autocomplete-list li > * {
   vertical-align: top !important;

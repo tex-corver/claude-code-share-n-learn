@@ -1,0 +1,40 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+.remote-assets
+components.d.ts
+
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Documentation
+*.md
+LICENSE
+
+# Misc
+.DS_Store
+*.log
+npm-debug.log*
+
+# GitHub & Claude
+.github
+.claude
+.agents
+
+# Project-specific throwaways
+claude-code-talk.md
+skills-lock.json

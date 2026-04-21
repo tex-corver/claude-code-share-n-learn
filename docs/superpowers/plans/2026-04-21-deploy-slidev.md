@@ -66,6 +66,7 @@ components.d.ts
 
 # Documentation
 *.md
+!slides.md
 LICENSE
 
 # Misc

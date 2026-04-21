@@ -476,10 +476,10 @@ layout: section
 
 ---
 
-# Demo: notification service design
+# Demo: outline this talk, from scratch
 
 <div class="text-lg opacity-80 mt-4">
-Email, Slack, or webhook delivery. Retries. Dead-letter queue.
+Empty dir. No slides. Just me and Claude — same prompt I used to write <code>claude-code-talk.md</code>.
 </div>
 
 <div class="mt-8 text-sm opacity-70">Demo steps (presenter cue card):</div>
@@ -487,61 +487,65 @@ Email, Slack, or webhook delivery. Retries. Dead-letter queue.
 <div class="mt-2 grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
 
 <div><strong>1.</strong> Empty dir → <code>claude</code></div>
-<div class="opacity-70">"No code yet. Thinking partner."</div>
+<div class="opacity-70">"No slides yet. Thinking partner."</div>
 
 <div><strong>2.</strong> Ask it to interview me (5–7 questions)</div>
-<div class="opacity-70">This is the move.</div>
+<div class="opacity-70">Audience, duration, takeaways, delivery style.</div>
 
 <div><strong>3.</strong> Answer briefly (pre-prepared)</div>
-<div class="opacity-70">10k/day, peaks 500/min, Slack limits, eventual consistency</div>
+<div class="opacity-70">25 min + 5 Q&A · mixed audience · plan-first is the hook · demos > slides</div>
 
-<div><strong>4.</strong> Ask for <code>design.md</code></div>
-<div class="opacity-70">Problem, goals, arch, failure modes, open questions</div>
+<div><strong>4.</strong> Ask for <code>outline.md</code></div>
+<div class="opacity-70">Sections, timing, one-liners, demo hooks, Q&A prep</div>
 
 <div><strong>5.</strong> Review live — skim headers</div>
-<div class="opacity-70">Point out Slack rate limit pickup, DLQ split</div>
+<div class="opacity-70">Compare to <code>claude-code-talk.md</code> side-by-side</div>
 
 <div><strong>6.</strong> Iterate</div>
-<div class="opacity-70">"Rewrite failure modes as a table. Add observability."</div>
+<div class="opacity-70">"Add a brainstorm-first section for bug fixes, with an anti-pattern."</div>
 
 </div>
 
 <!--
 PRE-PREPARED ANSWERS for step 3:
-- Scale: ~10k notifications/day, peaks of 500/min
-- Constraints: must handle Slack rate limits gracefully
-- Trade-off preference: eventual consistency over complexity
+- Audience: ~30 engineers, mixed — some daily Claude Code users, some haven't touched it
+- Duration: 25 min + 5 min Q&A
+- Core message: planning-first beats code-first; the code is the cheap part
+- Format preference: live demos over bulleted slides; one meta-example beats three abstract ones
 
-FALLBACK: if demo breaks, "network's being weird" + switch to next slide (example design.md excerpt).
+WHY THIS DEMO: I actually ran this to produce claude-code-talk.md. No surprises — I know exactly what comes out.
+PAYOFF LINE: "That's literally how the script for this talk got written. You just watched me speedrun my own prep."
+FALLBACK: if demo breaks, say "network's being weird" and advance — the next slide lands the point either way.
 -->
 
 ---
 layout: center
 ---
 
-# I didn't write any code yet.
+# I didn't write any slides yet.
 
 <div v-click class="mt-10 text-xl opacity-80 max-w-2xl mx-auto">
 
-In 5 minutes I have a design doc that would've taken me 45 minutes to draft.
+In 5 minutes I have an outline that would've taken me an hour to draft.
 
 </div>
 
 <div v-click class="mt-8 text-xl opacity-80 max-w-2xl mx-auto">
 
-I'd take this doc to my tech lead, get sign-off, and **then** ask Claude to implement it.
+I'd share it with a colleague, revise, and **then** let the Slidev skill scaffold slides from it.
 
 </div>
 
 <div v-click class="mt-12 text-2xl">
 
-That's the workflow.
+That's the workflow. For talks. For features. For bug fixes.
 
 </div>
 
 <!--
 Land this hard. It's the core message of the whole talk.
-The 5-minute doc is worth more than the 5-minute implementation.
+The 5-minute outline is worth more than the 5-minute implementation.
+The meta-example slide later in Section 4 pays this off — same loop, real artifacts.
 -->
 
 ---
@@ -860,6 +864,38 @@ layout: section
 Steps 1–3 are cheap. Step 4+ is where bugs live.
 
 </div>
+
+---
+
+# Meta-example — this talk
+
+<div class="text-sm opacity-70 mt-1">The thing you're watching right now, built with this exact loop.</div>
+
+<div class="mt-4 text-sm">
+
+| Step | Artifact | What happened |
+|---|---|---|
+| **1. Brainstorm** | *(conversation)* | Claude interviewed me: audience, duration, takeaways. No file yet. |
+| **2. Document** | `claude-code-talk.md` | Full speaker script — timing, one-liners, demo flow, Q&A. **This is the design doc.** Not the slides. |
+| **3. Review** | *(me, offline)* | Read it, cut two sections, rewrote the opening. Revised the doc — still no slides. |
+| **4a. Execute — slides** | `slides.md` | Invoked the Slidev skill: *"turn `claude-code-talk.md` into a deck."* Scaffolded from the doc. |
+| **4b. Execute — deploy** | `docs/superpowers/plans/2026-04-21-deploy-slidev.md` | 6-task sub-plan → `Dockerfile`, `nginx.conf`, CI workflows. Executed task-by-task. |
+
+</div>
+
+<div v-click class="mt-4 text-center opacity-80 text-sm">
+
+Doc first. Slides last. Change the opening once, not 30 slides.
+
+</div>
+
+<!--
+Land this: the talk you're watching is its own demo.
+- claude-code-talk.md was written first — that's the real artifact.
+- slides.md was scaffolded from it by the Slidev skill.
+- Deploy was a separate sub-plan with verification on every task — prod worked first try.
+If I'd opened Slidev first, I'd have spent the time fighting layouts instead of the argument.
+-->
 
 ---
 layout: center

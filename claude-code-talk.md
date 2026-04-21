@@ -144,59 +144,60 @@ Claude's context window holds *everything* it knows about your session. Most peo
 
 **Goal:** Make the "planning first" principle click by showing it.
 
-**Demo task:** *"Write a design doc for a feature from scratch."*
+**Demo task:** *"Outline this very talk, from scratch."*
 
-Pick a realistic feature your audience will relate to. Suggested:
-> "A notification service that delivers alerts to users via email, Slack, or webhook, with retry logic and a dead-letter queue."
-
-Nothing to implement — just a design exercise. This keeps the demo fast and on-theme.
+Why this task: it's the exact prompt I used to produce `claude-code-talk.md`. **I've already run it.** No live surprises, and when Section 4's meta-example slide lands, the audience will recognize the artifact they watched being built. Fortune favors demos you've already done.
 
 ### Demo flow
 
 **Step 1 — Start in an empty directory**
 
 ```bash
-mkdir notification-design && cd notification-design
+mkdir talk-outline && cd talk-outline
 claude
 ```
 
-**Say out loud:** *"No code yet. No repo. I'm using Claude Code as a thinking partner."*
+**Say out loud:** *"No slides yet. No repo. I'm using Claude Code as a thinking partner — same way I used it to prep this talk."*
 
 **Step 2 — Ask it to interview you before writing**
 
-> "I want to design a notification service. Before you write anything, ask me 5–7 clarifying questions about requirements, scale, constraints, and trade-offs. Then wait for my answers."
+> "I need to prep a 25-minute talk introducing Claude Code to my engineering team. Before you write anything, ask me 5–7 clarifying questions about audience, takeaways, format, and constraints. Then wait for my answers."
 
-**Why this matters to narrate:** "Notice I didn't just say 'write me a design doc.' I asked it to *interview me*. This is the move. The doc it produces after clarification is 10x better than a one-shot doc."
+**Why this matters to narrate:** "Notice I didn't just say 'write me a talk outline.' I asked it to *interview me*. This is the move. The outline it produces after clarification is 10x better than a one-shot outline."
 
 **Step 3 — Answer the questions briefly**
 
-Have 2–3 answers pre-prepared so you don't stall live:
-- Scale: ~10k notifications/day, peaks of 500/min
-- Constraints: must handle Slack rate limits gracefully
-- Trade-off preference: prefer eventual consistency over complexity
+Have answers pre-prepared so you don't stall live:
+- **Audience:** ~30 engineers, mixed — some daily Claude Code users, some haven't touched it
+- **Duration:** 25 min + 5 min Q&A
+- **Core message:** planning-first beats code-first; the code is the cheap part
+- **Format preference:** live demos over bulleted slides
+- **Constraint:** I want one demo that doubles as a meta-example (the talk's own build process)
 
-**Step 4 — Ask for the design doc**
+**Step 4 — Ask for the outline**
 
-> "Good. Now write the design doc as `design.md`. Include: problem statement, goals/non-goals, architecture, component breakdown, failure modes, and open questions."
+> "Good. Now write `outline.md`. Include: section breakdown with timing, the opening hook, one-liners worth rehearsing, demo hooks, Q&A prep."
 
-**Step 5 — Review the doc live**
+**Step 5 — Review the outline live**
 
-Open `design.md`. Skim it with the audience. Point out:
-- It picked up on Slack rate limits from your answer
-- It correctly split concerns (producer, queue, worker, DLQ)
-- There are open questions at the bottom — perfect, that's what you want
+Open `outline.md`. Skim it with the audience. Better yet, open `claude-code-talk.md` side-by-side. Point out:
+- It picked up on the "mixed audience" constraint and hedges its explanations accordingly
+- It structured time budget per section (real `claude-code-talk.md` has the same table)
+- It flagged open questions at the bottom — perfect, that's what you want
 
 **Step 6 — Iterate**
 
-> "Good. But rewrite the failure modes section as a table, and add a section on observability."
+> "Good. But Section 4 should cover bug fixes too, not just greenfield work. Add an anti-pattern for debug-by-dice-roll and a 4-step corrective pattern."
 
 **Teaching moment to verbalize during the demo:**
 
-> "Look at what just happened. In 5 minutes I have a design doc that would've taken me 45 minutes to draft. But more importantly — **I didn't write any code yet.** I'd now take this doc to my tech lead, get sign-off, and *then* ask Claude to implement it. That's the workflow."
+> "Look at what just happened. In 5 minutes I have an outline that would've taken me an hour to draft. But more importantly — **I didn't write any slides yet.** I'd now share this with a colleague, revise, and *then* let the Slidev skill scaffold the deck from it. That's the workflow."
+>
+> *(optional punchline)* "And here's the kicker — that's literally how the script for this talk got written. You just watched me speedrun my own prep. The meta-example slide at the end is going to show you the exact same artifacts we just produced."
 
 ### Fallback if demo breaks
 
-Have a screenshot of a pre-generated `design.md` ready. Say: "network's being weird, here's what it produced in rehearsal" — keep moving.
+Have a screenshot of a pre-generated `outline.md` ready, or just open `claude-code-talk.md` directly. Say: "network's being weird, here's what it produced in rehearsal" — keep moving. The core message lands either way.
 
 ---
 
@@ -374,6 +375,24 @@ You: "Open the design in my pencil file and describe what you see.
 - Steps 1–3 are cheap. Steps 4+ are where bugs live.
 - You catch architectural mistakes *before* they're in code.
 - You get a durable artifact (the doc) that lives longer than any chat session.
+
+**Meta-example — this talk:**
+
+> "The thing you're watching right now was built with this exact loop. Four artifacts, in this order:"
+
+| Step | Artifact | What happened |
+|---|---|---|
+| 1. Brainstorm | *(conversation)* | Claude interviewed me: audience, duration, what I wanted them to walk away able to do. No file written yet. |
+| 2. Document | `claude-code-talk.md` | The full speaker script — timing, one-liners, demo flow, Q&A prep. **This** is the design doc. Not the slides. |
+| 3. Review | *(me, offline)* | I read it, cut two sections, rewrote the opening hook. Revised the doc, not the slides — still no slides at this point. |
+| 4. Execute — slides | `slides.md` | Invoked the Slidev skill: *"turn `claude-code-talk.md` into a Slidev deck."* It scaffolded the whole thing from the doc. |
+| 4. Execute — deploy | `docs/superpowers/plans/2026-04-21-deploy-slidev.md` → Dockerfile, nginx, CI workflows | Separate sub-plan for "ship it to `claude-share.urieljsc.com`." Six tasks, each with verification steps. Executed task-by-task. |
+
+**The payoff to call out:**
+
+> "Notice the doc came *first* and the slides came *last*. If I'd opened Slidev and started typing slides, I'd have spent the whole time fighting layouts instead of fighting the argument. And when I wanted to change the opening — which I did, twice — I edited one markdown file, not 30 slides."
+>
+> "Same pattern for the deploy. I didn't let Claude just 'figure out how to ship this.' I made it write a plan with six concrete tasks and verification commands, I reviewed it, *then* it executed. The prod deploy worked first try because the thinking had already been done."
 
 ### 4.2 The pattern for bug fixing — the part most people get wrong
 

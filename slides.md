@@ -380,6 +380,12 @@ layout: two-cols-header
 Enter plan mode: <kbd>Shift</kbd>+<kbd>Tab</kbd> · <kbd>Ctrl</kbd>+<kbd>G</kbd> opens the plan in your editor
 </div>
 
+<div v-click class="mt-2 text-sm">
+<div class="inline-block border border-orange-400/50 rounded px-3 py-1 opacity-80">
+<strong>Review at every step.</strong> Don't wait until the end — catch mistakes early, when they're cheap.
+</div>
+</div>
+
 ::right::
 
 ### When to skip it
@@ -865,6 +871,12 @@ Steps 1–3 are cheap. Step 4+ is where bugs live.
 
 </div>
 
+<div v-click class="mt-2 text-center text-sm">
+<div class="inline-block border border-orange-400/50 rounded px-3 py-1 opacity-80">
+<strong>Review at every step.</strong> Brainstorm → review. Design doc → review. Only then implement.
+</div>
+</div>
+
 ---
 
 # Meta-example — this talk
@@ -965,6 +977,12 @@ This is the most relatable moment in the talk. Land it.
   </div>
 </div>
 
+</div>
+
+<div v-click class="mt-4 text-center text-sm">
+<div class="inline-block border border-orange-400/50 rounded px-3 py-1 opacity-80">
+<strong>Review at every step.</strong> Bug report → review. Hypotheses → review. Diagnosis → review. Then fix.
+</div>
 </div>
 
 <!--
